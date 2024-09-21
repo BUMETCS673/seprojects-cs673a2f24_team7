@@ -1,2 +1,3 @@
 export * from './ChatBox'
-export * from './Reply'
+export * from './Content'
+export * from './Header'

@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { Reply, ChatBox } from './pages'
+import { Header, Content, ChatBox } from './pages'
 
 function App() {
 
   return (
     <div>
-      <Reply></Reply>
+      <Header></Header>
+      <Content></Content>
       <ChatBox></ChatBox>
     </div>
   )
