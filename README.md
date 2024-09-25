@@ -26,7 +26,7 @@ Below is an overview of our system workflow, including how we use the combinatio
 
 ### 1. Workflow Diagram
 
-![LLM diagram](./images/LLM diagram.png)
+![LLM diagram](./images/LLM%20diagram.png)
 
 #### Description of the Workflow
 
@@ -42,7 +42,7 @@ Send to UI: The final response, which includes corresponding resume evaluation, 
 
 ### 2. Backend Diagram
 
-![Backend diagram](./images/Backend diagram.png)
+![Backend diagram](./images/Backend%20diagram.png)
 
 #### Basic Functionality
 
