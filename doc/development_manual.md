@@ -29,6 +29,26 @@ The configuration manager(@adamma1024) will check out a release branch on the la
 
 ## Working flows
 
+### General
+
+1. Install Node and pnpm
+
+```bash
+npm i -g pnpm
+```
+
+2. Install dependencise in the Root Path of project
+
+```bash
+pnpm i
+```
+
+3. Try the Git Commit in an interactive terminal
+
+```bash
+git commit # If it doesn't trigger the git commit plugin, please contact the @adamma1024
+```
+
 ### Frontend
 
 Reach out to the Adam(@adamma1024) if you have any questions.
