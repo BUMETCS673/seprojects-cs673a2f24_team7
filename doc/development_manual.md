@@ -10,9 +10,18 @@ cd seprojects-cs673a2f24_team5/
 git switch dev/** # Based on the content of your PR
 # do some change
 git add fileA fileB # Replace the fileA,B to your changed files
-git commit -m "feat: xxx" # Please follow the semver rules, so that we can have a gentle CHANGELOG.md then.
+git commit # Please follow the Conventional Commit rules, so that we can have a gentle CHANGELOG.md then.
 git push
 ```
+
+### Conventional Commit (For a gentle CHANGELOG file)
+
+> ⚠️ An interactive terminal is needed.  
+
+Our project is using the [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) to restrict the git commit message. Please learn more details on its official site.  
+
+![git_commit_plugin](../images/git_commit_plugin.png)
+![git_commit](../images/git_commit.png)
 
 Then, visit the Github [PR page](https://github.com/BUMETCS673/seprojects-cs673a2f24_team5/pulls) to commit your PR.
 
@@ -31,7 +40,7 @@ cd ./fe_repo
 pnpm i
 ```
 
-#### Debug
+#### Build & start
 
 ```bash
 pnpm dev # Then open the url it shows. Generally, it's http://localhost:5173/ if you don't change the default Vite configuration.
