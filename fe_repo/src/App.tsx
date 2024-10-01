@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Header, Content, ChatBox } from './pages'
 
 function App() {

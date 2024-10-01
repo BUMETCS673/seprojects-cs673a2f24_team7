@@ -1,6 +1,5 @@
 import { UploadIcon } from "../icons"
 import { Textarea } from '../components'
-import { TextareaHTMLAttributes } from "react";
 
 export const ChatBox = () => {
   return (
