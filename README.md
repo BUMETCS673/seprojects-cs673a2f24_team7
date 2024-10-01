@@ -4,6 +4,25 @@
 
 This repository is a project for METCS673. This project focuses on using AI to automate and improve the process of resume evaluation and interview preparation. By incorporating Retrieval-Augmented Generation (RAG), we ensure that our application can provide more accurate, context-relevant reviews.
 
+## How to start it with Docker?
+
+> Learn the [Docker](https://www.docker.com/) commands here.
+
+```bash
+cd /rootPath
+docker compose up --build -d # Make sure you've installed the Docker locally.
+```
+
+Then, open your browser with **<https://localhost:8081>** (The default port is 8081)  
+The `-d` is detached session mode, you can check your docker container with command:  
+
+```bash
+docker ps
+docker stop/kill <container_id> # And stop your service with container id
+# Or docker compose down/stop directly
+docker compose down/stop
+```
+
 ## Design Docs
 
 [📖 Design Docs](./doc/designs.md)  
