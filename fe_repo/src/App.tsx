@@ -10,6 +10,7 @@ function App() {
     setMessages((messages) => [...messages, {text: message, user: true}]);
 
     setTimeout(() => {
+      // handle message sent, update conversation section
       const response = {text: sendMessage(message), user: false}
       setMessages((messages) => [...messages, response]);
     }, 1000);

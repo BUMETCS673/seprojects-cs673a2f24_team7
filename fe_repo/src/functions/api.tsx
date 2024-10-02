@@ -23,6 +23,7 @@ export function sendMessage(message: string) {
 }
 
 export function uploadFile(file: File) {
+  // TODO: Implement file upload after api schema is provided
   console.log("uploading file", file.name);
   // const formData = new FormData();
   // formData.append('file', file);

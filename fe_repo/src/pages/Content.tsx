@@ -14,10 +14,12 @@ export const Content = ({messages}) => {
       {messages.map((msg, index) => (
         <div
           key={index}
+          {/* set user's message to right and others to left */}
           className={`p-2 flex ${msg.user ? 'justify-end' : 'justify-start'}`}
         >
           <div
             className={`max-w-xs p-2 rounded-lg ${
+              // set user's message to blue and others to green
               msg.user
                 ? 'bg-blue-500 text-green'
                 : 'bg-green-500 text-black'

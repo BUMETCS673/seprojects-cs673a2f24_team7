@@ -11,6 +11,7 @@ export const ChatBox = ({onSendMessage}) => {
     if (message.trim() == "") {
       return;
     }
+    // call upper function to send message
     onSendMessage(message);
     setMessage("");
   }
@@ -30,6 +31,7 @@ export const ChatBox = ({onSendMessage}) => {
           function handleFiles(event) {
             const file = event.target?.files[0];
             if (file) {
+              // upload if file is valid
               uploadFile(file);
             }
           }
@@ -42,6 +44,7 @@ export const ChatBox = ({onSendMessage}) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyUp={(e) => {
+          // listen for enter key
           if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             handleSend();
