@@ -60,7 +60,7 @@ const StyledTextarea = styled(BaseTextareaAutosize)(
 );
 
 export const Textarea = (props: Textarea) => {
-  const [userInput, setUserInput] = React.useState('');
+  // const [userInput, setUserInput] = React.useState('');
   return (
     <StyledTextarea
       aria-label="Textarea"
@@ -68,18 +68,18 @@ export const Textarea = (props: Textarea) => {
       maxRows={4}
       placeholder="Feel free to ask ~"
       {...props}
-      value={userInput}
-      onChange={(e) => {
-        if (e.target) {
-          setUserInput((e.target as HTMLTextAreaElement).value);
-        }
-      }}
-      onKeyUp={(e) => {
-        if (!e.shiftKey && e.key === 'Enter') {
-          console.log(userInput);
-          setUserInput('');
-        }
-      }}
+      // value={userInput}
+      // onChange={(e) => {
+      //   if (e.target) {
+      //     setUserInput((e.target as HTMLTextAreaElement).value);
+      //   }
+      // }}
+      // onKeyUp={(e) => {
+      //   if (!e.shiftKey && e.key === 'Enter') {
+      //     console.log(userInput);
+      //     setUserInput('');
+      //   }
+      // }}
     />
   );
 }
