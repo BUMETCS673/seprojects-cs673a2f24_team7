@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
-import { styled } from '@mui/system';
+import {TextareaAutosize as BaseTextareaAutosize} from '@mui/base/TextareaAutosize';
+import {styled} from '@mui/system';
 
 type Textarea = {
   className?: string,
@@ -29,7 +29,7 @@ const grey = {
 };
 
 const StyledTextarea = styled(BaseTextareaAutosize)(
-  ({ theme }) => `
+  ({theme}) => `
     box-sizing: border-box;
     width: 320px;
     font-family: 'IBM Plex Sans', sans-serif;
@@ -60,7 +60,6 @@ const StyledTextarea = styled(BaseTextareaAutosize)(
 );
 
 export const Textarea = (props: Textarea) => {
-  // const [userInput, setUserInput] = React.useState('');
   return (
     <StyledTextarea
       aria-label="Textarea"
@@ -68,18 +67,6 @@ export const Textarea = (props: Textarea) => {
       maxRows={4}
       placeholder="Feel free to ask ~"
       {...props}
-      // value={userInput}
-      // onChange={(e) => {
-      //   if (e.target) {
-      //     setUserInput((e.target as HTMLTextAreaElement).value);
-      //   }
-      // }}
-      // onKeyUp={(e) => {
-      //   if (!e.shiftKey && e.key === 'Enter') {
-      //     console.log(userInput);
-      //     setUserInput('');
-      //   }
-      // }}
     />
   );
 }
