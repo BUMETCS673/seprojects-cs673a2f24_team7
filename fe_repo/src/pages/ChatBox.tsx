@@ -1,6 +1,7 @@
 import {UploadIcon} from "../icons"
 import {Textarea} from '../components'
 import {useState} from "react";
+import {uploadFile} from "../functions/api.tsx";
 
 export const ChatBox = ({onSendMessage}) => {
 
@@ -23,20 +24,19 @@ export const ChatBox = ({onSendMessage}) => {
           const input = document.createElement("input");
           input.type = 'file';
           input.accept = 'image/*,.pdf,.doc,.docx';
-          input.addEventListener("change", handleFiles, false);
+          input.onchange = handleFiles;
+          input.click();
 
-          function handleFiles() {
-            if ((input.files?.length ?? 0) > 0) {
-              console.log(input.files![0]);
+          function handleFiles(event) {
+            const file = event.target?.files[0];
+            if (file) {
+              uploadFile(file);
             }
           }
-
-          input.click();
         }}
       >
         <UploadIcon/>
       </div>
-      {/* chat input */}
       <Textarea
         className="flex-1"
         value={message}

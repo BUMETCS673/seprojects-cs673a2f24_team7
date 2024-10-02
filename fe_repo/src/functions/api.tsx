@@ -21,3 +21,15 @@ export function sendMessage(message: string) {
     return "An error occurred, please try again later.";
   }
 }
+
+export function uploadFile(file: File) {
+  console.log("uploading file", file.name);
+  // const formData = new FormData();
+  // formData.append('file', file);
+  // fetch('/api/upload', {
+  //   method: 'POST',
+  //   body: formData,
+  // }).then(response => response.json())
+  //   .then(data => console.log('File upload success:', data))
+  //   .catch(error => console.error('Error uploading file:', error));
+}

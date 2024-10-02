@@ -1,6 +1,5 @@
 import {useEffect, useRef} from "react";
 
-
 export const Content = ({messages}) => {
   const contentRef = useRef(null);
 
