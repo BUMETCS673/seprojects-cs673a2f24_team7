@@ -1,9 +1,12 @@
-import {UploadIcon} from "../icons"
-import {Textarea} from '../components'
-import {useState} from "react";
-import {uploadFile} from "../functions/api.tsx";
+import { UploadIcon } from "../icons"
+import { Textarea } from '../components'
+import { useState } from "react";
+import { uploadFile } from "../functions/api.ts";
 
-export const ChatBox = ({onSendMessage}) => {
+interface IChatBoxProps {
+  onSendMessage: (message: string) => void;
+}
+export const ChatBox = ({ onSendMessage }: IChatBoxProps) => {
 
   const [message, setMessage] = useState("");
 
@@ -25,11 +28,13 @@ export const ChatBox = ({onSendMessage}) => {
           const input = document.createElement("input");
           input.type = 'file';
           input.accept = 'image/*,.pdf,.doc,.docx';
+          // @ts-expect-error @Linchen
           input.onchange = handleFiles;
           input.click();
 
-          function handleFiles(event) {
-            const file = event.target?.files[0];
+          function handleFiles(event: { target: HTMLInputElement }) {
+            if (!event.target || !event.target.files) return;
+            const file = event.target.files[0];
             if (file) {
               // upload if file is valid
               uploadFile(file);
@@ -37,11 +42,10 @@ export const ChatBox = ({onSendMessage}) => {
           }
         }}
       >
-        <UploadIcon/>
+        <UploadIcon />
       </div>
       <Textarea
         className="flex-1"
-        value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyUp={(e) => {
           // listen for enter key

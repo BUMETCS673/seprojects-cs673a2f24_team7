@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
+import { Message } from "../App";
 
-export const Content = ({ messages }) => {
-  const contentRef = useRef(null);
+interface IContentProps {
+  messages: Message[];
+}
+
+export const Content = ({ messages }: IContentProps) => {
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -15,12 +20,12 @@ export const Content = ({ messages }) => {
         <div
           key={index}
           /* set user's message to right and others to left */
-          className={`p-2 flex ${msg.user ? 'justify-end' : 'justify-start'}`}
+          className={`p-2 flex ${msg.isUser ? 'justify-end' : 'justify-start'}`}
         >
           <div
             className={`max-w-xs p-2 rounded-lg ${
               // set user's message to blue and others to green
-              msg.user
+              msg.isUser
                 ? 'bg-blue-500 text-green'
                 : 'bg-green-500 text-black'
               }`}

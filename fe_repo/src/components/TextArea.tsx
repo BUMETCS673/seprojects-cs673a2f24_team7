@@ -1,8 +1,7 @@
-import * as React from 'react';
-import {TextareaAutosize as BaseTextareaAutosize} from '@mui/base/TextareaAutosize';
-import {styled} from '@mui/system';
+import { TextareaAutosize as BaseTextareaAutosize, TextareaAutosizeProps } from '@mui/base/TextareaAutosize';
+import { styled } from '@mui/system';
 
-type Textarea = {
+interface ITextarea extends TextareaAutosizeProps {
   className?: string,
 }
 
@@ -29,7 +28,7 @@ const grey = {
 };
 
 const StyledTextarea = styled(BaseTextareaAutosize)(
-  ({theme}) => `
+  ({ theme }) => `
     box-sizing: border-box;
     width: 320px;
     font-family: 'IBM Plex Sans', sans-serif;
@@ -59,7 +58,7 @@ const StyledTextarea = styled(BaseTextareaAutosize)(
   `,
 );
 
-export const Textarea = (props: Textarea) => {
+export const Textarea = (props: ITextarea) => {
   return (
     <StyledTextarea
       aria-label="Textarea"
