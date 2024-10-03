@@ -8,7 +8,7 @@ on:
       - fe_repo/*
 
 jobs:
-  build:
+  "build-test-linter":
     runs-on: ubuntu-latest
 
     defaults:
