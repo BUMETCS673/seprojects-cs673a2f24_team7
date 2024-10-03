@@ -4,10 +4,10 @@
 
 ### PR Build pipeline
 
-- [ ] Install dependencise
-- [ ] Build
-- [ ] Linter
-- [ ] Unit Tests
+- [x] Install dependencise
+- [x] Build
+- [x] Linter
+- [x] Unit Tests
 - [ ] Security Check
 
 ### E2E tests pipeline (optional)
