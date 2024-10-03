@@ -34,3 +34,21 @@ export function uploadFile(file: File) {
   //   .then(data => console.log('File upload success:', data))
   //   .catch(error => console.error('Error uploading file:', error));
 }
+
+
+// user id
+function getUserId() {
+  return localStorage.getItem('userId');
+}
+
+function setUserId(userId: string) {
+  if (!userId) {
+    return;
+  }
+  localStorage.setItem('userId', userId);
+}
+
+// login using google
+export function login() {
+  // TODO: Implement login using google after api schema is provided
+}
