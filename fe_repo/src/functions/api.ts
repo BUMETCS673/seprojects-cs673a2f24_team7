@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 // TODO: Implement API functions
 
 export function sendMessage(message: string) {
@@ -50,5 +52,8 @@ function setUserId(userId: string) {
 
 // login using google
 export function login() {
-  // TODO: Implement login using google after api schema is provided
+  // TODO: Implement login using google to replace random uuid generation
+  const uuid = getUserId() || uuidv4();
+  setUserId(uuid);
+  return uuid;
 }
