@@ -40,7 +40,10 @@ export function uploadFile(file: File) {
 
 // user id
 function getUserId() {
-  return localStorage.getItem('userId');
+  // TODO: Implement login using google to replace random uuid generation
+  const uuid = localStorage.getItem('userId') || uuidv4();
+  setUserId(uuid);
+  return uuid;
 }
 
 function setUserId(userId: string) {
@@ -52,8 +55,5 @@ function setUserId(userId: string) {
 
 // login using google
 export function login() {
-  // TODO: Implement login using google to replace random uuid generation
-  const uuid = getUserId() || uuidv4();
-  setUserId(uuid);
-  return uuid;
+  return getUserId();
 }
