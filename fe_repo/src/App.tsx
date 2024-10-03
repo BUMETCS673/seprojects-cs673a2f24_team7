@@ -1,17 +1,17 @@
 import { Header, Content, ChatBox } from './pages'
-import {useState} from "react";
-import {sendMessage} from "./functions/api.tsx";
+import { useState } from "react";
+import { sendMessage } from "./functions/api.tsx";
 
 function App() {
 
   const [messages, setMessages] = useState([])
 
   const onSendMessage = (message: string) => {
-    setMessages((messages) => [...messages, {text: message, user: true}]);
+    setMessages((messages) => [...messages, { text: message, user: true }]);
 
     setTimeout(() => {
       // handle message sent, update conversation section
-      const response = {text: sendMessage(message), user: false}
+      const response = { text: sendMessage(message), user: false }
       setMessages((messages) => [...messages, response]);
     }, 1000);
   }

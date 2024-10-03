@@ -1,6 +1,6 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 
-export const Content = ({messages}) => {
+export const Content = ({ messages }) => {
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const Content = ({messages}) => {
       {messages.map((msg, index) => (
         <div
           key={index}
-          {/* set user's message to right and others to left */}
+          /* set user's message to right and others to left */
           className={`p-2 flex ${msg.user ? 'justify-end' : 'justify-start'}`}
         >
           <div
@@ -23,7 +23,7 @@ export const Content = ({messages}) => {
               msg.user
                 ? 'bg-blue-500 text-green'
                 : 'bg-green-500 text-black'
-            }`}
+              }`}
           >
             {msg.text}
           </div>
