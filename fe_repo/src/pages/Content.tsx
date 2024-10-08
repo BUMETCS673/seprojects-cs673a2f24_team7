@@ -1,12 +1,12 @@
-import { useEffect, useRef } from "react";
-import { Message } from "../App";
+import {useEffect, useRef} from "react";
+import {Message} from "../App";
 
 interface IContentProps {
   messages: Message[];
 }
 
-export const Content = ({ messages }: IContentProps) => {
-  const contentRef = useRef<HTMLDivElement | null>(null);
+export const Content = ({messages}: IContentProps) => {
+  const contentRef = useRef<HTMLDivElement>(document.createElement('div'));
 
   useEffect(() => {
     if (contentRef.current) {
@@ -14,21 +14,38 @@ export const Content = ({ messages }: IContentProps) => {
     }
   }, [messages]);
 
+  const contentStyle = {
+    borderWidth: '2px',
+    padding: '16px',
+    flex: 1,
+    overflowY: 'auto' as 'auto',
+    backgroundColor: '#ffffff', // White or off-white background
+    borderRadius: '8px',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+    marginBottom: '20px',
+  };
+
   return (
-    <div className="border-2 p-fined flex-1 overflow-y-auto" ref={contentRef}>
+    <div ref={contentRef} style={contentStyle}>
       {messages.map((msg, index) => (
         <div
           key={index}
           /* set user's message to right and others to left */
-          className={`p-2 flex ${msg.isUser ? 'justify-end' : 'justify-start'}`}
+          style={{
+            padding: '8px',
+            display: 'flex',
+            justifyContent: msg.isUser ? 'flex-end' : 'flex-start',
+          }}
         >
           <div
-            className={`max-w-xs p-2 rounded-lg ${
-              // set user's message to blue and others to green
-              msg.isUser
-                ? 'bg-blue-500 text-green'
-                : 'bg-green-500 text-black'
-              }`}
+            className="max-w-xs p-2 rounded-lg"
+            style={{
+              maxWidth: '300px',
+              padding: '8px',
+              borderRadius: '12px',
+              backgroundColor: msg.isUser ? '#3498db' : '#A8E6A1',
+              color: msg.isUser ? 'white' : 'black',
+            }}
           >
             {msg.text}
           </div>

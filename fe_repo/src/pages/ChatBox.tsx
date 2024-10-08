@@ -20,10 +20,20 @@ export const ChatBox = ({onSendMessage}: IChatBoxProps) => {
     setMessage("");
   }
 
+  const chatBoxStyle = {
+    borderWidth: '2px',
+    padding: '16px',
+    display: 'flex',
+    alignItems: 'center' as 'center',
+    backgroundColor: '#ffffff', // White background for chat input
+    borderRadius: '8px',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  };
+
   return (
-    <div className="border-2 p-fined flex items-center">
+    <div style={chatBoxStyle}>
       <div
-        className="w-16 flex justify-center cursor-pointer"
+        style={{width: '64px', display: 'flex', justifyContent: 'center', cursor: 'pointer'}}
         onClick={() => {
           // Upload files
           const handleFiles = (event) => {
