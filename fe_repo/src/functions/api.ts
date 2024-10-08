@@ -1,4 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
+import axios from "axios";
 
 // TODO: Implement API functions
 
@@ -25,28 +26,22 @@ export function sendMessage(message: string) {
 }
 
 export function uploadFile(file: File) {
-  // TODO: Implement file upload after api schema is provided
   console.log("uploading file", file.name);
-  // const formData = new FormData();
-  // formData.append('file', file);
-  // fetch('/api/upload', {
-  //   method: 'POST',
-  //   body: formData,
-  // }).then(response => response.json())
-  //   .then(data => console.log('File upload success:', data))
-  //   .catch(error => console.error('Error uploading file:', error));
+  axios.post('/api/upload', {file: file, user_id: getUserId()},
+    {headers: {'Content-Type': 'multipart/form-data'}})
+    .catch(error => console.error('Error fetching  response', error));
 }
 
 
 // user id
-function getUserId() {
+export function getUserId() {
   // TODO: Implement login using google to replace random uuid generation
   const uuid = localStorage.getItem('userId') || uuidv4();
   setUserId(uuid);
   return uuid;
 }
 
-function setUserId(userId: string) {
+export function setUserId(userId: string) {
   if (!userId) {
     return;
   }
