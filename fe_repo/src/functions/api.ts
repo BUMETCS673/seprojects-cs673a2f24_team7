@@ -36,13 +36,18 @@ export function uploadFile(file: File) {
 // user id
 export function getUserId() {
   // TODO: Implement login using google to replace random uuid generation
-  const uuid = localStorage.getItem('userId') || uuidv4();
+  let uuid;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userId') || uuidv4();
+  } else {
+    uuid = uuidv4();
+  }
   setUserId(uuid);
   return uuid;
 }
 
 export function setUserId(userId: string) {
-  if (!userId) {
+  if (!userId || typeof window === 'undefined') {
     return;
   }
   localStorage.setItem('userId', userId);
