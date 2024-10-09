@@ -36,9 +36,10 @@ export const ChatBox = ({onSendMessage}: IChatBoxProps) => {
         style={{width: '64px', display: 'flex', justifyContent: 'center', cursor: 'pointer'}}
         onClick={() => {
           // Upload files
-          const handleFiles = (event) => {
-            if (!event.target?.files) return;
-            const file = event.target.files[0];
+          const handleFiles = (event: Event) => {
+            const files = (event.target as HTMLInputElement)?.files;
+            if (!files || files.length === 0) return;
+            const file = files[0];
             if (file) {
               // upload if file is valid
               uploadFile(file);
