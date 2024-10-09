@@ -3,11 +3,11 @@ export const Header = () => {
     borderWidth: '2px',
     padding: '16px',
     fontSize: '2rem',
-    fontWeight: 'bold' as 'bold',
+    fontWeight: 'bold' as const as 'bold',
     backgroundColor: '#ffffff',
     borderRadius: '8px',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-    textAlign: 'center' as 'center',
+    textAlign: 'center' as const as 'center',
     color: '#333', // Softer text color
   };
 

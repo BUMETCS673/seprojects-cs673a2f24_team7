@@ -35,7 +35,7 @@ function App() {
 
   const mainContainerStyle = {
     display: 'flex',
-    flexDirection: 'column' as 'column',
+    flexDirection: 'column' as const as 'column',
     height: '100vh',
     backgroundColor: '#f0f4f8', // Light pastel background
     padding: '20px',

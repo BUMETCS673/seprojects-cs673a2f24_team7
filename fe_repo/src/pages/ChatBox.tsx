@@ -24,7 +24,7 @@ export const ChatBox = ({onSendMessage}: IChatBoxProps) => {
     borderWidth: '2px',
     padding: '16px',
     display: 'flex',
-    alignItems: 'center' as 'center',
+    alignItems: 'center' as const as 'center',
     backgroundColor: '#ffffff', // White background for chat input
     borderRadius: '8px',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',

@@ -18,7 +18,7 @@ export const Content = ({messages}: IContentProps) => {
     borderWidth: '2px',
     padding: '16px',
     flex: 1,
-    overflowY: 'auto' as 'auto',
+    overflowY: 'auto' as const as 'auto',
     backgroundColor: '#ffffff', // White or off-white background
     borderRadius: '8px',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
