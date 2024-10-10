@@ -38,9 +38,8 @@ export const Content = ({messages}: IContentProps) => {
           }}
         >
           <div
-            className="max-w-xs p-2 rounded-lg"
+            className="max-w-xs p-2 rounded-lg w-full"
             style={{
-              maxWidth: '300px',
               padding: '8px',
               borderRadius: '12px',
               backgroundColor: msg.isUser ? '#3498db' : '#A8E6A1',

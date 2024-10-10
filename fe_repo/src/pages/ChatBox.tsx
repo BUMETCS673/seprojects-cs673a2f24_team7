@@ -1,6 +1,6 @@
 import {UploadIcon} from "../icons"
 import {Textarea} from '../components'
-import {CSSProperties, useState} from "react";
+import {useState} from "react";
 import {uploadFile} from "../functions/api.ts";
 
 interface IChatBoxProps {
@@ -32,16 +32,6 @@ export const ChatBox = ({onSendMessage, onAnalyze}: IChatBoxProps) => {
     setJobDescription(""); // Clear the input after submission
   };
 
-  const chatBoxStyle = {
-    borderWidth: '2px',
-    padding: '16px',
-    display: 'flex',
-    flexDirection: 'column' as const as 'column',
-    backgroundColor: '#ffffff',
-    borderRadius: '8px',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-  };
-
   const iconRowStyle = {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -66,48 +56,38 @@ export const ChatBox = ({onSendMessage, onAnalyze}: IChatBoxProps) => {
     gap: '5px', // Space between icon and text
   };
 
-  const modalStyle: CSSProperties = {
-    position: 'fixed', // Ensure position is a valid CSS value
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)', // Translate accepts a string
-    backgroundColor: 'white',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-    zIndex: 1000,
-    width: '400px',
-    display: showPrompt ? 'block' : 'none', // Ensure the value of 'display' is a valid CSS value
-  };
-
-  const overlayStyle: CSSProperties = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 999,
-    display: showPrompt ? 'block' : 'none', // Ensure the value of 'display' is a valid CSS value
-  };
 
   return (
-    <div style={chatBoxStyle}>
-      {/* Overlay and Modal for Job Description */}
-      <div style={overlayStyle} onClick={() => setShowPrompt(false)}></div>
-      <div style={modalStyle}>
-        <h3>Enter a Job Description</h3>
-        <Textarea
-          className="flex-1"
-          value={jobDescription}
-          onChange={(e) => setJobDescription(e.target.value)}
-          placeholder="Enter job description here..."
-        />
-        <button style={iconButtonStyle} onClick={handleAnalyze}>
-          Submit
-        </button>
-      </div>
-      {/* icon row */}
+    <div className="border-2 p-4 flex flex-col bg-white rounded-lg shadow-md">
+      {/* Overlay and Modal for Job Description */
+        showPrompt && (
+          <>
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setShowPrompt(false)}
+            />
+            <div
+              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-10 rounded-xl shadow-xl z-50 w-96">
+              <h3 className="text-2xl font-bold mb-6">Enter a Job Description</h3>
+              <Textarea
+                className="w-full h-40 p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all"
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
+                placeholder="Enter job description here..."
+              />
+              <button
+                className="mt-6 bg-blue-500 text-white font-semibold text-lg px-8 py-3 rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition-all w-full"
+                onClick={handleAnalyze}
+              >
+                Submit
+              </button>
+            </div>
+
+          </>
+        )
+      }
+      {/* icon row */
+      }
       <div style={iconRowStyle}>
         <div
           style={{width: '64px', display: 'flex', justifyContent: 'center', cursor: 'pointer'}}

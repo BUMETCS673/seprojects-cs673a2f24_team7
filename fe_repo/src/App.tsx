@@ -41,7 +41,7 @@ function App() {
 
     setMessages((messages) => [...messages,
       {
-        text: 'Analyze my resume',
+        text: 'Analyze my resume based on the following job description:\n' + jd,
         isUser: true
       },
       sendingMessage]);
