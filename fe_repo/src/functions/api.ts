@@ -25,6 +25,18 @@ export function sendMessage(message: string) {
   }
 }
 
+export function analyze(job_description: string) {
+  console.log("analyzing", job_description);
+  const resp = {
+    response: 'An error occurred, please try again later.',
+  }
+  axios.post('/api/analyze', {job_description: job_description, user_id: getUserId()},
+    {headers: {'Content-Type': 'application/json'}})
+    .then(response => resp.response = response.data.result)
+    .catch(error => console.error('Error fetching response', error));
+  return resp.response;
+}
+
 export function uploadFile(file: File) {
   console.log("uploading file", file.name);
   axios.post('/api/upload', {file: file, user_id: getUserId()},
@@ -35,7 +47,6 @@ export function uploadFile(file: File) {
 
 // user id
 export function getUserId() {
-  // TODO: Implement login using google to replace random uuid generation
   let uuid;
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userId') || uuidv4();

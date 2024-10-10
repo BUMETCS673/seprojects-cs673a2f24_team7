@@ -1,5 +1,5 @@
-import { expect, test } from 'vitest';
-import { sendMessage, uploadFile } from "./api";
+import {expect, test} from 'vitest';
+import {analyze, sendMessage, uploadFile} from "./api";
 
 test('sendMessage', () => {
   expect(sendMessage("I'm adam")).toEqual("Message accepted: I'm adam");
@@ -14,3 +14,8 @@ test('uploadFile', () => {
   expect(uploadFile(file)).toBeFalsy(); // Due to the return value is 'undefined'
 });
 
+
+test('analyze', () => {
+  // make sure message is always returned
+  expect(analyze('hello world')).toBeDefined();
+})

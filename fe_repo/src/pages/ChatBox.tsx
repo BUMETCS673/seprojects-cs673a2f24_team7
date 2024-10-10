@@ -5,11 +5,14 @@ import {uploadFile} from "../functions/api.ts";
 
 interface IChatBoxProps {
   onSendMessage: (message: string) => void;
+  onAnalyze: (jd: string) => void;
 }
 
-export const ChatBox = ({onSendMessage}: IChatBoxProps) => {
+export const ChatBox = ({onSendMessage, onAnalyze}: IChatBoxProps) => {
 
   const [message, setMessage] = useState("");
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [jobDescription, setJobDescription] = useState("");
 
   const handleSend = () => {
     if (message.trim() == "") {
@@ -20,53 +23,116 @@ export const ChatBox = ({onSendMessage}: IChatBoxProps) => {
     setMessage("");
   }
 
-  const chatBoxStyle = {
-    borderWidth: '2px',
-    padding: '16px',
-    display: 'flex',
-    alignItems: 'center' as const as 'center',
-    backgroundColor: '#ffffff', // White background for chat input
-    borderRadius: '8px',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  const handleAnalyze = () => {
+    if (jobDescription.trim() !== "") {
+      // Call the analyze function with job description
+      onAnalyze(jobDescription);
+    }
+    setShowPrompt(false);
+    setJobDescription(""); // Clear the input after submission
   };
 
-  return (
-    <div style={chatBoxStyle}>
-      <div
-        style={{width: '64px', display: 'flex', justifyContent: 'center', cursor: 'pointer'}}
-        onClick={() => {
-          // Upload files
-          const handleFiles = (event: Event) => {
-            const files = (event.target as HTMLInputElement)?.files;
-            if (!files || files.length === 0) return;
-            const file = files[0];
-            if (file) {
-              // upload if file is valid
-              uploadFile(file);
-            }
-          }
+  const iconRowStyle = {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    gap: '10px', // Add space between buttons
+    marginBottom: '10px',
+  };
 
-          const input = document.createElement("input");
-          input.type = 'file';
-          input.accept = '.pdf';
-          input.onchange = handleFiles;
-          input.click();
-        }}
-      >
-        <UploadIcon/>
+  const iconStyle = {
+    fontSize: '16px', // Set a smaller, consistent size for emoji icons
+  };
+
+  const iconButtonStyle = {
+    cursor: 'pointer',
+    padding: '8px 16px',
+    borderRadius: '20px', // Rounded rectangle shape
+    backgroundColor: '#3498db', // A nice blue color
+    color: 'white',
+    border: 'none',
+    fontSize: '14px', // Ensure consistent font size
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px', // Space between icon and text
+  };
+
+
+  return (
+    <div className="border-2 p-4 flex flex-col bg-white rounded-lg shadow-md">
+      {/* Overlay and Modal for Job Description */
+        showPrompt && (
+          <>
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setShowPrompt(false)}
+            />
+            <div
+              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-10 rounded-xl shadow-xl z-50 w-96">
+              <h3 className="text-2xl font-bold mb-6">Enter a Job Description</h3>
+              <Textarea
+                className="w-full h-40 p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all"
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
+                placeholder="Enter job description here..."
+              />
+              <button
+                className="mt-6 bg-blue-500 text-white font-semibold text-lg px-8 py-3 rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition-all w-full"
+                onClick={handleAnalyze}
+              >
+                Submit
+              </button>
+            </div>
+
+          </>
+        )
+      }
+      {/* icon row */
+      }
+      <div style={iconRowStyle}>
+        <div
+          style={{width: '64px', display: 'flex', justifyContent: 'center', cursor: 'pointer'}}
+          onClick={() => {
+            // Upload files
+            const handleFiles = (event: Event) => {
+              const files = (event.target as HTMLInputElement)?.files;
+              if (!files || files.length === 0) return;
+              const file = files[0];
+              if (file) {
+                // upload if file is valid
+                uploadFile(file);
+              }
+            }
+
+            const input = document.createElement("input");
+            input.type = 'file';
+            input.accept = '.pdf';
+            input.onchange = handleFiles;
+            input.click();
+          }}
+        >
+          <UploadIcon/>
+        </div>
+        <button style={iconButtonStyle} onClick={() => setShowPrompt(true)}>
+          <span style={iconStyle}>📄</span> Analyze my resume
+        </button>
+        {/*🛈 /!* Example icon - you can use actual icons here *!/*/}
+        {/*💼 /!* Example icon for interview *!/*/}
       </div>
-      <Textarea
-        className="flex-1"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyUp={(e) => {
-          // listen for enter key
-          if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
-            handleSend();
-          }
-        }}
-      />
+      {/* input row */}
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <Textarea
+          className="flex-1"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyUp={(e) => {
+            // listen for enter key
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
+        />
+      </div>
     </div>
   )
 }
