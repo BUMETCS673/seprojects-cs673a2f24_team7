@@ -4,12 +4,17 @@ It processes a CSV file containing resumes, evaluates each resume
 and then outputs the scores and explanations to a new CSV file.
 """
 
+import json
+import os
 import pandas as pd
 from openai import OpenAI
 
-# OpenAI Key
+# Load the OpenAI API key
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'configs', 'config.json')
+with open(config_path, 'r') as file:
+    config = json.load(file)
 client = OpenAI(
-    api_key='YOUR-GPT-API-KEY'
+    api_key=config['CHATGPT_API_KEY']
 )
 
 # Define the scoring criteria and weights
