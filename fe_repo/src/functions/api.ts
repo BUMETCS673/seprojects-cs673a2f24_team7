@@ -47,7 +47,6 @@ export function uploadFile(file: File) {
 
 // user id
 export function getUserId() {
-  // TODO: Implement login using google to replace random uuid generation
   let uuid;
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userId') || uuidv4();
